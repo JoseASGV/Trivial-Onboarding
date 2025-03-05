@@ -43,24 +43,27 @@ let questions = [
 ];
 
 function shuffleArray(array) {
-for (let i = array.length - 1; i > 0; i--) {
-const j = Math.floor(Math.random() * (i + 1));
-[array[i], array[j]] = [array[j], array[i]];
-}
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 shuffleArray(questions);
 
 let currentQuestion = 0;
 let score = 0;
+let timeLimit = 10; // Segundos por pregunta
+let timeLeft;
+let timerInterval;
 
 function loadQuestion() {
-if (currentQuestion >= questions.length) {
+    if (currentQuestion >= questions.length) {
         document.getElementById("quiz").style.display = "none";
         document.getElementById("result").innerHTML = `Tu puntuación final: ${score}/${questions.length}`;
         return;
     }
-    
+
     let q = questions[currentQuestion];
     document.getElementById("question").innerText = q.question;
     document.getElementById("feedback").innerText = "";
@@ -68,7 +71,7 @@ if (currentQuestion >= questions.length) {
     let optionsDiv = document.getElementById("options");
     optionsDiv.innerHTML = "";
 
-    // Clonamos el array de opciones y lo mezclamos antes de mostrarlo
+    // Mezclar opciones antes de mostrarlas
     let shuffledOptions = [...q.options];
     shuffleArray(shuffledOptions);
 
@@ -78,21 +81,49 @@ if (currentQuestion >= questions.length) {
         button.onclick = () => checkAnswer(option);
         optionsDiv.appendChild(button);
     });
+
+    // Reiniciar el temporizador
+    startTimer();
+}
+
+function startTimer() {
+    timeLeft = timeLimit;
+    let timeBar = document.getElementById("timeBar");
+    timeBar.style.width = "100%"; // Resetear barra de tiempo
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timeBar.style.width = `${(timeLeft / timeLimit) * 100}%`;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            checkAnswer("timeout"); // Marcar como incorrecto si el tiempo se agota
+        }
+    }, 1000);
 }
 
 function checkAnswer(selected) {
-let feedbackDiv = document.getElementById("feedback");
-if (selected === questions[currentQuestion].answer) {
-score++;
-feedbackDiv.innerText = "¡Correcto!";
-feedbackDiv.style.color = "green";
-} else {
-feedbackDiv.innerText = "Incorrecto. La respuesta correcta es: " + questions[currentQuestion].answer;
-feedbackDiv.style.color = "red";
-}
-document.getElementById("score").innerText = `Puntuación: ${score}`;
-currentQuestion++;
-setTimeout(loadQuestion, 1500);
+    clearInterval(timerInterval); // Detener el temporizador
+
+    let feedbackDiv = document.getElementById("feedback");
+    let correctAnswer = questions[currentQuestion].answer;
+
+    if (selected === correctAnswer) {
+        score++;
+        feedbackDiv.innerText = "¡Correcto!";
+        feedbackDiv.style.color = "green";
+    } else if (selected === "timeout") {
+        feedbackDiv.innerText = `⏳ Tiempo agotado. Respuesta: ${correctAnswer}`;
+        feedbackDiv.style.color = "orange";
+    } else {
+        feedbackDiv.innerText = `❌ Incorrecto. Respuesta: ${correctAnswer}`;
+        feedbackDiv.style.color = "red";
+    }
+
+    document.getElementById("score").innerText = `Puntuación: ${score}`;
+    currentQuestion++;
+    setTimeout(loadQuestion, 2000);
 }
 
 loadQuestion();
