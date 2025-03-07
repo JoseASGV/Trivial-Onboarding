@@ -2,7 +2,6 @@ let questions = [
 
     // Preguntas sobre Salesforce
     { question: "¿Qué es Salesforce?", options: ["Un CRM", "Un ERP", "Un sistema operativo", "Un lenguaje de programación"], answer: "Un CRM" },
-    { question: "¿Qué componente de Salesforce permite la integración con otras aplicaciones?", options: ["Marketing Cloud", "Mulesoft", "Tableau", "Service Cloud"], answer: "Mulesoft" },
     { question: "¿Cómo se llama la inteligencia artificial integrada en Salesforce?", options: ["Alexa", "Watson", "Einstein AI", "Cortana"], answer: "Einstein AI" },
     { question: "¿Qué solución de IA de Salesforce permite crear agentes virtuales autónomos?", options: ["AgentForce", "AI Cloud", "SageMaker", "Llama"], answer: "AgentForce" },
     { question: "¿Qué es AppExchange en Salesforce?", options: ["Un marketplace de aplicaciones", "Un módulo de ventas", "Un sistema de pago", "Un entorno de desarrollo"], answer: "Un marketplace de aplicaciones" },
@@ -11,14 +10,11 @@ let questions = [
     { question: "¿Qué permite hacer Salesforce Marketing Cloud?", options: ["Automatizar campañas de marketing", "Gestionar inventario", "Administrar bases de datos", "Controlar nóminas"], answer: "Automatizar campañas de marketing" },
     { question: "¿Qué nube de Salesforce está enfocada en servicios financieros?", options: ["Health Cloud", "Financial Services Cloud", "Service Cloud", "Banking Cloud"], answer: "Financial Services Cloud" },
     { question: "¿Qué solución de Salesforce se usa para comercio electrónico?", options: ["Sales Cloud", "Commerce Cloud", "Experience Cloud", "Retail Cloud"], answer: "Commerce Cloud" },
-    { question: "¿Cómo se llama la herramienta de Salesforce para análisis de datos avanzados?", options: ["Power BI", "Looker", "Tableau", "Analytics Cloud"], answer: "Tableau" },
-    { question: "¿Qué herramienta de Salesforce facilita la integración con APIs?", options: ["Mulesoft", "Apex", "Heroku", "Salesforce Flow"], answer: "Mulesoft" },
     { question: "¿Qué lenguaje de programación se usa en Salesforce?", options: ["Python", "Java", "Apex", "Swift"], answer: "Apex" },
     { question: "¿Cuál es la plataforma sin código de Salesforce?", options: ["Visualforce", "Flow Builder", "Heroku", "LWC"], answer: "Flow Builder" },
     { question: "¿Qué es Salesforce Lightning?", options: ["Una base de datos", "Una herramienta de email", "Un framework de UI", "Un módulo de soporte"], answer: "Un framework de UI" },
     { question: "¿Cuál es la principal ventaja de usar Salesforce?", options: ["Gestión centralizada de clientes", "Base de datos en local", "Interfaz antigua", "Código abierto"], answer: "Gestión centralizada de clientes" },
     { question: "¿Qué herramienta de Salesforce permite automatizar procesos?", options: ["Salesforce Flow", "Mulesoft", "Marketing Cloud", "Tableau"], answer: "Salesforce Flow" },
-    { question: "¿Qué permite hacer Heroku en el ecosistema de Salesforce?", options: ["Desplegar aplicaciones", "Crear reportes", "Gestionar bases de datos", "Automatizar emails"], answer: "Desplegar aplicaciones" },
     { question: "¿Qué herramienta se usa para reportes y dashboards en Salesforce?", options: ["Tableau", "Reports & Dashboards", "Power BI", "Marketing Cloud"], answer: "Reports & Dashboards" },
     { question: "¿Cómo se llama el módulo de Salesforce para ONGs y organizaciones sin fines de lucro?", options: ["Nonprofit Cloud", "Service Cloud", "Financial Cloud", "Experience Cloud"], answer: "Nonprofit Cloud" },
     { question: "¿Qué servicio de Salesforce permite gestionar equipos de ventas?", options: ["Sales Cloud", "Service Cloud", "Experience Cloud", "Marketing Cloud"], answer: "Sales Cloud" },
@@ -31,15 +27,30 @@ let questions = [
 
     // Preguntas sobre Stripe
     { question: "¿Qué gestiona Stripe en Salesforce?", options: ["Pagos", "Emails", "Inventario", "Reportes"], answer: "Pagos" },
-    { question: "¿Qué tipo de empresas usan más Stripe?", options: ["SaaS y fintech", "ONGs", "Retail", "Marketing"], answer: "SaaS y fintech" },
     { question: "¿Qué ventaja ofrece Stripe?", options: ["Facturación automatizada", "Análisis de clientes", "Soporte en la nube", "Personalización UI"], answer: "Facturación automatizada" },
-    { question: "¿Qué función tiene Stripe CPQ en Salesforce?", options: ["Suscripciones", "Llamadas", "IA conversacional", "Anuncios"], answer: "Suscripciones" },
 
     // Preguntas sobre Aircall
     { question: "¿Para qué se usa Aircall en Salesforce?", options: ["Gestión de llamadas", "Análisis de ventas", "Facturación", "Campañas"], answer: "Gestión de llamadas" },
     { question: "¿Qué ventaja clave ofrece Aircall?", options: ["Click-to-call", "Generación de leads", "Facturación automática", "Gestión de inventario"], answer: "Click-to-call" },
     { question: "¿Qué función clave tiene Aircall en Salesforce?", options: ["Registro de llamadas", "Creación de contratos", "Análisis de datos", "Automatización de facturas"], answer: "Registro de llamadas" },
-    { question: "¿Quién se beneficia más de Aircall?", options: ["Call centers", "Equipos de ventas", "Soporte técnico", "Todas ellas"], answer: "Todas ellas" }
+    { question: "¿Quién se beneficia más de Aircall?", options: ["Call centers", "Equipos de ventas", "Soporte técnico", "Todas ellas"], answer: "Todas ellas" },
+
+    // Preguntas sobre Tuvis
+    { question: "¿Para qué tipo de comunicación empresarial está diseñado Tuvis?", options: ["Mensajería instantánea", "Emails", "Llamadas de voz", "Redes sociales"], answer: "Mensajería instantánea" },
+    { question: "¿Con qué plataforma de mensajería se integra Tuvis para mejorar la gestión de clientes?", options: ["Telegram", "WhatsApp", "Slack", "Teams"], answer: "WhatsApp" },
+
+    // Preguntas sobre PDF Butler
+    { question: "¿Cuál es la función principal de PDF Butler?", options: ["Generación automatizada de documentos", "Gestión de inventarios", "Análisis de datos", "Automatización de llamadas"], answer: "Generación automatizada de documentos" },
+    { question: "¿Con qué plataforma se integra PDF Butler para personalizar documentos?", options: ["Salesforce", "SAP", "HubSpot", "Zendesk"], answer: "Salesforce" },
+
+    // Preguntas sobre Signaturit
+    { question: "¿Qué servicio ofrece Signaturit?", options: ["Firma electrónica", "Gestión de clientes", "Facturación automatizada", "Automatización de emails"], answer: "Firma electrónica" },
+    { question: "¿Cuál es un beneficio clave de Signaturit?", options: ["Garantiza la validez legal de documentos firmados", "Permite enviar correos en masa", "Analiza tendencias de mercado", "Automatiza procesos de RRHH"], answer: "Garantiza la validez legal de documentos firmados" },
+
+    // Preguntas sobre FinDock
+    { question: "¿Qué permite gestionar FinDock dentro de Salesforce?", options: ["Pagos y donaciones", "Marketing automation", "Gestión de proyectos", "Soporte técnico"], answer: "Pagos y donaciones" },
+    { question: "¿Qué tipo de organizaciones se benefician más de FinDock?", options: ["ONGs y educación", "E-commerce", "Industria manufacturera", "Call centers"], answer: "ONGs y educación" }
+
 ];
 
 function shuffleArray(array) {
@@ -57,6 +68,8 @@ let score = 0;
 let timeLimit = 8; // Segundos por pregunta
 let timeLeft;
 let timerInterval;
+let waitTime = 1000; // Tiempo de espera antes de la siguiente pregunta (en milisegundos)
+
 
 function restartGame() {
     currentQuestion = 0;
@@ -162,7 +175,7 @@ function checkAnswer(selected) {
 
     document.getElementById("score").innerText = `Puntuación: ${score}`;
     currentQuestion++;
-    setTimeout(loadQuestion, 2000);
+    setTimeout(loadQuestion, waitTime);
 }
 
 loadQuestion();
