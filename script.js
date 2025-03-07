@@ -49,32 +49,59 @@ function shuffleArray(array) {
     }
 }
 
+// Mezcla las preguntas antes de iniciar la partida
 shuffleArray(questions);
 
 let currentQuestion = 0;
 let score = 0;
-let timeLimit = 10; // Segundos por pregunta
+let timeLimit = 8; // Segundos por pregunta
 let timeLeft;
 let timerInterval;
 
+function restartGame() {
+    currentQuestion = 0;
+    score = 0;
+    // Limpia y reestablece los elementos
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("feedback").innerText = "";
+    document.getElementById("score").innerText = "Puntuación: 0";
+    document.getElementById("questionCounter").innerText = "";
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("score").style.display = "block";
+    document.getElementById("questionCounter").style.display = "block";
+    document.getElementById("restartButton").style.display = "none";
+    
+    document.getElementById("options").innerHTML = "";
+
+    shuffleArray(questions);
+    loadQuestion();
+}
+
+
 function loadQuestion() {
     if (currentQuestion >= questions.length) {
+        // Muestra la puntuación final y el botón de reinicio al terminar la partida
         document.getElementById("quiz").style.display = "none";
+        document.getElementById("score").style.display = "none";
+        document.getElementById("questionCounter").style.display = "none";
         document.getElementById("result").innerHTML = `Tu puntuación final: ${score}/${questions.length}`;
+        document.getElementById("restartButton").style.display = "block";
         return;
     }
 
     let q = questions[currentQuestion];
     document.getElementById("question").innerText = q.question;
     document.getElementById("feedback").innerText = "";
+    document.getElementById("questionCounter").innerText = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
 
     let optionsDiv = document.getElementById("options");
     optionsDiv.innerHTML = "";
 
-    // Mezclar opciones antes de mostrarlas
+    // Mezcla respuestas antes de mostrarlas
     let shuffledOptions = [...q.options];
     shuffleArray(shuffledOptions);
 
+    // Crea botones para cada respuesta
     shuffledOptions.forEach(option => {
         let button = document.createElement("button");
         button.innerText = option;
@@ -82,14 +109,14 @@ function loadQuestion() {
         optionsDiv.appendChild(button);
     });
 
-    // Reiniciar el temporizador
+    // Reinicia el temporizador
     startTimer();
 }
 
 function startTimer() {
     timeLeft = timeLimit;
     let timeBar = document.getElementById("timeBar");
-    timeBar.style.width = "100%"; // Resetear barra de tiempo
+    timeBar.style.width = "100%"; // Resetea barra de tiempo
 
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
@@ -98,16 +125,17 @@ function startTimer() {
 
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            checkAnswer("timeout"); // Marcar como incorrecto si el tiempo se agota
+            checkAnswer("timeout"); // Marca como incorrecto si el tiempo se agota
         }
     }, 1000);
 }
 
 function checkAnswer(selected) {
-    clearInterval(timerInterval); // Detener el temporizador
+    clearInterval(timerInterval); // Detiene el temporizador
 
     let feedbackDiv = document.getElementById("feedback");
     let correctAnswer = questions[currentQuestion].answer;
+    let buttons = document.querySelectorAll("#options button")
 
     if (selected === correctAnswer) {
         score++;
@@ -120,6 +148,17 @@ function checkAnswer(selected) {
         feedbackDiv.innerText = `❌ Incorrecto. Respuesta: ${correctAnswer}`;
         feedbackDiv.style.color = "red";
     }
+
+    buttons.forEach(button => {
+        if (button.innerText === correctAnswer) {
+            button.style.backgroundColor = "#0ca197";
+            button.style.color = "white";
+        } else if (button.innerText === selected) {
+            button.style.backgroundColor = "#d90e4e"; 
+            button.style.color = "white";
+        }
+        button.disabled = true; 
+    });
 
     document.getElementById("score").innerText = `Puntuación: ${score}`;
     currentQuestion++;
